@@ -24,3 +24,9 @@ The code allows a Python client to send a message to a C# server and receive bac
 4) `server_csharp`: server side code. gRPC is capable of generating a lot of this code automatically. I found it difficult to make the auto-generated code run cleanly and reliably so I re-wrote it manually. 
 
 This repo demonstrates first steps towards the infrastructure of function-first, zero-copy model serving. It does not use Arrow Flight. It does use gRPC and Protobuf.
+
+### What else?
+
+The C# server solution contains a `Dockerfile` allowing the code to be run in a Docker container. This has been tested and runs successfully.
+
+The purpose of the repo is to demonstrate use of `gRPC` and `Protobuf` in the construction of a model service API. The repo is a demonstration-of-concept. It doesn't include any of the machinery needed for a commercial API, such as logging, authentication and a health service. Neither does it include code for a graceful shutdown, allowing `gRPC` to release resources.
