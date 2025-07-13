@@ -47,14 +47,7 @@ server.Start();
 // ... display output
 Console.WriteLine("C# gRPC server is running at localhost:5000");
 
-// Shut down the server on user input
+// ... keep running
+await Task.Delay(Timeout.Infinite);
 
-// ... "press any key"
-Console.WriteLine("Press any key to stop...");
-Console.ReadKey();
-
-// ... shut down the server
-server.ShutdownAsync().Wait();
-
-// ... display output
-Console.WriteLine("Server stopped");
+// Production code requires graceful shutdown to allow gRPC to release resources etc
