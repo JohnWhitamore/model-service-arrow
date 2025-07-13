@@ -2,7 +2,7 @@
 
 Let's think about Models as a Service (MaaS).
 
-### Architectural premise
+### What are the architectural requirements of a MaaS API?
 
 1) REST and GraphQL APIs are - in a sense - data first. MaaS requires a function-first API which invokes remote procedure calls. A modern implementation of RPCs is Google's gRPC. So let's use that as a building block.
 
@@ -14,7 +14,7 @@ Let's think about Models as a Service (MaaS).
 
 That's a pretty good architecture for a MaaS API.
 
-### What this repo demonstrates
+### What does this repo demonstrate?
 
 The code allows a Python client to send a message to a C# server and receive back a response.
 
