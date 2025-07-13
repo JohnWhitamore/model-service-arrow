@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package Arrow;
+
+service Arrow {
+  rpc Analyze (ArrowRequest) returns (ArrowReply);
+}
+
+message ArrowRequest {
+  bytes data = 1;
+}
+
+message ArrowReply {
+  repeated string array_names = 1;
+  repeated double array_sums = 2;
+}

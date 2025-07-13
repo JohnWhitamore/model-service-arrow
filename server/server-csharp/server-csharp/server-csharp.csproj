@@ -13,6 +13,7 @@
     <PackageReference Include="Grpc.Core" Version="2.46.6" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.7" />
     <PackageReference Include="protobuf-net" Version="3.2.52" />
+    <PackageReference Include="Apache.Arrow" Version="14.0.0" />
   </ItemGroup>
 
 </Project>

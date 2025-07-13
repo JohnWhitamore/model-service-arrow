@@ -16,20 +16,23 @@ serviceCollection.AddLogging(config =>
     config.SetMinimumLevel(LogLevel.Information);
 });
 
-// ... register the PingService
+// ... register services
 serviceCollection.AddSingleton<PingService>();
+serviceCollection.AddSingleton<ArrowService>();
 
 // Build the service provider
 
 // ... instantiate
 var serviceProvider = serviceCollection.BuildServiceProvider();
 
-// ... resolve the service instance
+// ... resolve the service instances
 var pingService = serviceProvider.GetRequiredService<PingService>();
+var arrowService = serviceProvider.GetRequiredService<ArrowService>();
 
 // ... build the ServerServiceDefinition
 var serviceDefinition = ServerServiceDefinition.CreateBuilder()
     .AddMethod(PingDefinition.SayPingMethod, pingService.SayPing)
+    .AddMethod(ArrowDefinition.SayArrowMethod, arrowService.SayArrow)
     .Build();
 
 // Create and start the gRPC server
