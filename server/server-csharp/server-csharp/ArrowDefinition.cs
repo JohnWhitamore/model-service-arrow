@@ -9,7 +9,7 @@ namespace Infrastructure
         public static readonly Method<ArrowRequest, ArrowReply> SayArrowMethod =
             new Method<ArrowRequest, ArrowReply>(
                 MethodType.Unary,
-                "Arrow.Arrow",
+                "Arrow.ArrowService",
                 "SayArrow",
                 ManualMarshallers.ArrowRequestMarshaller,
                 ManualMarshallers.ArrowReplyMarshaller);

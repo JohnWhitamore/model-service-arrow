@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package Arrow;
 
-service Arrow {
-  rpc Analyze (ArrowRequest) returns (ArrowReply);
+service ArrowService {
+  rpc SayArrow (ArrowRequest) returns (ArrowReply);
 }
 
 message ArrowRequest {
