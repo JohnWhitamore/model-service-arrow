@@ -11,11 +11,14 @@ namespace Services
     public class ArrowService
     {
         private readonly ILogger<ArrowService> _logger;
+        private readonly ArrowProcessor _processor;
 
-        public ArrowService(ILogger<ArrowService> logger)
+        public ArrowService(ILogger<ArrowService> logger, ArrowProcessor processor)
         {
             _logger = logger;
             _logger.LogInformation("ArrowService instantiated.");
+
+            _processor = processor;
         }
 
         public async Task<ArrowReply> SayArrow(ArrowRequest request, ServerCallContext context)
@@ -32,38 +35,9 @@ namespace Services
                 return new ArrowReply();
             }
 
-            var arrayNames = new List<string>();
-            var arraySums = new List<double>();
+            var reply = _processor.ProcessBatch(batch);
 
-            var fields = batch.Schema.FieldsList;
-            var arrays = batch.Arrays.ToList();
-
-            for (int i = 0; i < fields.Count; i++)
-            {
-                var name = fields[i].Name;
-                var array = arrays[i];
-
-                arrayNames.Add(name);
-                _logger.LogInformation("Processing array: {Name}", name);
-
-                double sum = 0.0;
-
-                if (array is DoubleArray doubleArray)
-                {
-                    sum = doubleArray.Values.ToArray().Sum();
-                }
-
-                arraySums.Add(sum);
-                _logger.LogInformation("Array {Name} sum: {Sum}", name, sum);
-            }
-
-            var reply = new ArrowReply
-            {
-                ArrayNames = arrayNames,
-                ArraySums = arraySums
-            };
-
-            _logger.LogInformation("Returning reply with {Count} arrays", arrayNames.Count);
+            _logger.LogInformation("Returning reply with {Count} arrays", reply.ArrayNames.Count);
             return reply;
         }
     }
