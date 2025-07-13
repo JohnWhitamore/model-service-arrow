@@ -19,6 +19,7 @@ serviceCollection.AddLogging(config =>
 // ... register services
 serviceCollection.AddSingleton<PingService>();
 serviceCollection.AddSingleton<ArrowService>();
+serviceCollection.AddSingleton<ArrowProcessor>();
 
 // Build the service provider
 
