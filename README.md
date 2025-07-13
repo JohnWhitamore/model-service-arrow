@@ -23,4 +23,4 @@ The code allows a Python client to send a message to a C# server and receive bac
 3) `client.py`: creates an (insecure) channel and a stub that abstracts the Protobuf and gRPC mechanics underneath. Uses the stub to ping a message to the server and receive a response.
 4) `server_csharp`: server side code. gRPC is capable of generating a lot of this code automatically. I found it difficult to make the auto-generated code run cleanly and reliably so I re-wrote it manually. 
 
-This repo is a first principled step towards the infrastructure of function-first, zero-copy model serving. It does not yet use Arrow Flight. It does use gRPC and Protobuf.
+This repo demonstrates first steps towards the infrastructure of function-first, zero-copy model serving. It does not use Arrow Flight. It does use gRPC and Protobuf.
