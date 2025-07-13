@@ -5,46 +5,55 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 // Create the service container
+
+// ... instantiate
 var serviceCollection = new ServiceCollection();
 
-// Add logging
+// ... add logging
 serviceCollection.AddLogging(config =>
 {
     config.AddConsole();
     config.SetMinimumLevel(LogLevel.Information);
 });
 
-// Register the PingService
+// ... register the PingService
 serviceCollection.AddSingleton<PingService>();
 
-// Build the provider
+// Build the service provider
+
+// ... instantiate
 var serviceProvider = serviceCollection.BuildServiceProvider();
 
-// Resolve the service instance
+// ... resolve the service instance
 var pingService = serviceProvider.GetRequiredService<PingService>();
 
-// Build the ServerServiceDefinition using your manual method descriptor
+// ... build the ServerServiceDefinition
 var serviceDefinition = ServerServiceDefinition.CreateBuilder()
     .AddMethod(PingDefinition.SayPingMethod, pingService.SayPing)
     .Build();
 
-// Create the gRPC server
+// Create and start the gRPC server
+
+// ... instantiate the server
 Server server = new Server
 {
     Services = { serviceDefinition },
     Ports = { new ServerPort("localhost", 5000, ServerCredentials.Insecure) }
 };
 
-// Start the server
+// ... start the server
 server.Start();
 
 // ... display output
 Console.WriteLine("C# gRPC server is running at localhost:5000");
-Console.WriteLine("Press any key to stop...");
 
-// Wait for user input before shutting down
+// Shut down the server on user input
+
+// ... "press any key"
+Console.WriteLine("Press any key to stop...");
 Console.ReadKey();
 
+// ... shut down the server
 server.ShutdownAsync().Wait();
 
 // ... display output
