@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using Apache.Arrow;
-using Apache.Arrow.Ipc;
+﻿using Apache.Arrow.Ipc;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 
